@@ -1,4 +1,4 @@
-const exitPopup = document.querySelector('[ms-code-popup="exit-intent"]');
+const exitPopup = document.querySelector('[exit-popup="exit-intent"]');
 const seconds = parseInt(exitPopup.getAttribute('seconds')) * 1000;
 const idleTimeOut = parseInt(exitPopup.getAttribute('idle-time')) * 2;
 
