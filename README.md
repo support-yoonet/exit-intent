@@ -9,7 +9,7 @@ When the user leaves their cursor from the viewport, the modal or container will
 
 ## Installation
 
-Either put this code in embed element and below the popup container, or before </body> in page settings
+Either put this code in embed element and below the popup container, or before </body> in page settings then put the necessary custom attribute in the element
 
 ```bash
   <script defer src='https://cdn.jsdelivr.net/gh/support-yoonet/exit-intent/exit-intent.js'></script>
