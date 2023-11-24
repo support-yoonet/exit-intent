@@ -3,7 +3,8 @@
 
 Its an activity of the user where they will leave the site using their cursor to another page or they stop scrolling through the website.
 
-
+# About this code
+When the user leaves their cursor from the viewport, the modal or container will show.
 
 
 ## Installation
