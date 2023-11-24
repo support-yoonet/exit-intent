@@ -28,7 +28,7 @@ Either put this code in embed element and below the popup container, or before <
 
 
 ## Limitations
-- Cooldown using the unit of time like Hours, days, or weeks
+- Cooldown using the unit of time like Hours, days, or weeks is not yet implemented
 
 
 
