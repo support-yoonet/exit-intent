@@ -1,6 +1,8 @@
 const exitPopup = document.querySelector('[exit-popup="exit-intent"]');
-const seconds = parseInt(exitPopup.getAttribute('seconds')) * 1000;
-const idleTimeOut = parseInt(exitPopup.getAttribute('idle-time')) * 2;
+const msConverter = 1000;
+const seconds = parseInt(exitPopup.getAttribute('seconds')) * msConverter;
+const idleTimeOut = parseInt(exitPopup.getAttribute('idle-time')) * msConverter;
+const mouseOutTime = parseInt(exitPopup.getAttribute('mouse-out-idle')) * msConverter;
 
 const CookieService = {
     setCookie(name, value, seconds) {
@@ -19,10 +21,12 @@ const CookieService = {
     }
 }; 
   const mouseEvent = (e) => {
+    let mouseOutTimer = 0;
+    mouseOutTimer += 1000;
     const shouldShowExitIntent =
       !e.toElement && !e.relatedTarget && e.clientY < 10;
   
-    if (shouldShowExitIntent && !CookieService.getCookie("exitIntentShown")) {
+    if ((mouseOutTimer === mouseOutTime) && (shouldShowExitIntent && !CookieService.getCookie("exitIntentShown"))) {
       //document.removeEventListener("mouseout", mouseEvent);
       exitPopup.style.display = "flex";
       CookieService.setCookie("exitIntentShown", true, seconds);
