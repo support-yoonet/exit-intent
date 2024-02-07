@@ -2,9 +2,7 @@ const exitPopup = document.querySelector('[exit-popup="exit-intent"]');
 const msConverter = 1000;
 const seconds = parseInt(exitPopup.getAttribute('seconds')) * msConverter;
 const idleTimeOut = parseInt(exitPopup.getAttribute('idle-time')) * msConverter;
-const mouseOutTime = parseInt(exitPopup.getAttribute('mouse-out-idle')) * msConverter;
-let mouseOutTimer;
-
+const mouseOutTimer = parseInt(exitPopup.getAttribute('mouse-out-idle')) * msConverter;
 const CookieService = {
     setCookie(name, value, seconds) {
         const date = new Date();
@@ -33,11 +31,7 @@ const CookieService = {
   }; 
   
  document.addEventListener("mouseout", () => {
-    clearTimeout(mouseOutTimer);
-    setTimeout(mouseEvent, mouseOutTime);
- });
- document.addEventListener('mouseover', () => {
-    clearTimeout(mouseOutTimer);
+    setTimeout(mouseEvent, mouseOutTimer);
  });
  
   let idleTime = 0;
