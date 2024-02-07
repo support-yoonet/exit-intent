@@ -2,7 +2,8 @@ const exitPopup = document.querySelector('[exit-popup="exit-intent"]');
 const msConverter = 1000;
 const seconds = parseInt(exitPopup.getAttribute('seconds')) * msConverter;
 const idleTimeOut = parseInt(exitPopup.getAttribute('idle-time')) * msConverter;
-const mouseOutTimer = parseInt(exitPopup.getAttribute('mouse-out-idle')) * msConverter;
+const mouseOutIdleTimeout = parseInt(exitPopup.getAttribute('mouse-out-idle')) * msConverter;
+let mouseOutIdleTime;
 const CookieService = {
     setCookie(name, value, seconds) {
         const date = new Date();
@@ -19,26 +20,26 @@ const CookieService = {
         return cookieValue || null;
     }
 };
-
-let mouseOut = 0;
-const mouseOutReset = () => {
-    mouseOut = 0;
-}
 const mouseEvent = (e) => {
-    mouseOut += 1000;
     const shouldShowExitIntent =
         !e.toElement && !e.relatedTarget && e.clientY < 10;
 
-    if ((mouseOut === mouseOutTimer) && (shouldShowExitIntent && !CookieService.getCookie("exitIntentShown"))) {
+    if (shouldShowExitIntent && !CookieService.getCookie("exitIntentShown")) {
         //document.removeEventListener("mouseout", mouseEvent);
         exitPopup.style.display = "flex";
         CookieService.setCookie("exitIntentShown", true, seconds);
     }
-    setTimeout(mouseEvent(e), 1000);
 };
 
-document.addEventListener("mouseout", mouseEvent);
-document.addEventListener('mouseover', mouseOutReset);
+document.addEventListener("mouseout", function (e) {
+    clearTimeout(mouseOutIdleTime);
+    mouseOutIdleTime = setTimeout(() => mouseEvent(e), mouseOutIdleTimeout);
+});
+
+document.addEventListener('mouseover', function () {
+    clearTimeout(mouseOutIdleTime);
+});
+
 let idleTime = 0;
 const resetIdleTime = function () {
     idleTime = 0;
