@@ -33,11 +33,11 @@ const CookieService = {
   }; 
   
  document.addEventListener("mouseout", () => {
-    clearTimeout(mouseOutTimer)
-    setTimeout(mouseEvent, mouseOutTime)
+    clearTimeout(mouseOutTimer);
+    setTimeout(mouseEvent, mouseOutTime);
  });
  document.addEventListener('mouseover', () => {
-    clearTimeout(mouseOutTimer)
+    clearTimeout(mouseOutTimer);
  });
  
   let idleTime = 0;
