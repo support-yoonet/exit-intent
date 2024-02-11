@@ -1,3 +1,4 @@
+<script>
 const exitPopup = document.querySelector('[exit-popup="exit-intent"]');
 const msConverter = 1000;
 const seconds = parseInt(exitPopup.getAttribute('seconds')) * msConverter;
@@ -61,3 +62,4 @@ document.addEventListener("touchstart", resetIdleTime);
 
 // Increment idle time on touch end
 document.addEventListener("touchend", incrementIdleTime);
+</script>
